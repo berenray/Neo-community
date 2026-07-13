@@ -1,3 +1,23 @@
+// ── THEME TOGGLE ──────────────────────────────────────────────
+(function () {
+  const root = document.documentElement;
+  const key = 'site-theme';
+  if (localStorage.getItem(key) === 'dark') root.setAttribute('data-theme', 'dark');
+
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      root.removeAttribute('data-theme');
+      localStorage.setItem(key, 'light');
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      localStorage.setItem(key, 'dark');
+    }
+  });
+})();
+
 // ── COUNTDOWN TIMER ──────────────────────────────────────────
 (function () {
   const key = 'sf_timer_end';
@@ -122,7 +142,7 @@ if (watchersEl) {
   glow.style.cssText = `
     position: fixed; pointer-events: none; z-index: 9999;
     width: 300px; height: 300px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(245,210,0,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(248,215,74,0.06) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     transition: left 0.15s ease, top 0.15s ease;
     left: -999px; top: -999px;
